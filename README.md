@@ -5,9 +5,19 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Nightly-2088FF?logo=githubactions&logoColor=white)
 ![NASA TESS](https://img.shields.io/badge/Data-NASA%20TESS-0B3D91)
 
+**Part I of the Sunday Hunter Trilogy** — the project that started my zero-cost nightly GitHub Actions + 15-minute Sunday triage obsession.
+
 I built **TESS Planet Hunter** after reading [Pavel Rabtsevich's story](https://www.reddit.com/r/ClaudeAI/comments/1wzw8zd/i_think_i_found_a_planet_nobody_knew_existed_i/) about hunting an undiscovered exoplanet in open NASA satellite data and getting hooked on the idea. At first I genuinely thought that if I found one, I'd get to name it after myself — turns out NASA and the IAU don't let you do that. I almost dropped the whole idea right there, but honestly, the thought of finding a real planet from my laptop was still way too cool to pass up.
 
 I didn't want a project that needed babysitting all week, so I decided to automate the search and only spend an hour or two on Sundays reviewing results. There was just one catch: I quickly realized that finding planets means reading hundreds of noisy star-brightness graphs — and I had no idea how to read a light curve yet. Instead of giving up or eyeballing raw noise, I automated *that* part too: a nightly GitHub Actions pipeline cleans and pre-filters 300 NASA TESS stars a day, a lightweight PyTorch 1D CNN scores the most planet-like dips, and a keyboard-driven dark-mode UI lets me review the top candidates in 15 minutes every Sunday.
+
+### The Sunday Hunter Trilogy
+
+| Part | Project | What It Hunts | Open Data |
+| :---: | :--- | :--- | :--- |
+| **I** | **TESS Planet Hunter** *(this repo)* | Undiscovered exoplanets | NASA TESS |
+| **II** | [Subsurface Ghost Hunter](https://github.com/CemreMetin/subsurface-ghost-hunter) | Buried Roman foundations in Niğde | ESA Sentinel-2 |
+| **III** | [ZTF Shadow & Blindspot Hunter](https://github.com/CemreMetin/ztf-shadow-hunter) | Suddenly dimming stars & AI blind spots | ZTF / ALeRCE |
 
 ### My Twist on the Idea
 - **Zero-cost cloud autopilot:** Rather than running manual scans on my laptop, a stateless GitHub Actions job runs every night at 03:00 UTC and saves tiny compressed `.npz` vectors back to the repo.
