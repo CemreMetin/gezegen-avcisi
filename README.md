@@ -5,9 +5,9 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Nightly-2088FF?logo=githubactions&logoColor=white)
 ![NASA TESS](https://img.shields.io/badge/Data-NASA%20TESS-0B3D91)
 
-I built **TESS Planet Hunter** because I wanted a real, automated way to search for exoplanets in **NASA TESS** satellite data without paying for cloud servers or spending all week babysitting scripts.
+I built **TESS Planet Hunter** after reading [Pavel Rabtsevich's story](https://www.reddit.com/r/ClaudeAI/comments/1wzw8zd/i_think_i_found_a_planet_nobody_knew_existed_i/) about hunting an undiscovered exoplanet in open NASA satellite data and getting hooked on the idea. I didn't want a project that needed babysitting all week, so I decided to automate the search and only spend an hour or two on Sundays reviewing results.
 
-The goal was simple: let GitHub Actions do the heavy lifting every night on autopilot, let a lightweight deep learning model rank the best signals, and spend just **15–20 minutes on Sundays** reviewing the top candidates with my own eyes.
+There was just one catch: I quickly realized that finding planets means reading hundreds of noisy star-brightness graphs — and I had no idea how to read a light curve yet. Instead of giving up or eyeballing raw noise, I automated *that* part too: a nightly GitHub Actions pipeline cleans and pre-filters 300 NASA TESS stars a day, a lightweight PyTorch 1D CNN scores the most planet-like dips, and a keyboard-driven dark-mode UI lets me review the top candidates in 15 minutes every Sunday.
 
 ---
 
@@ -66,8 +66,8 @@ You can fork this repo and run your own nightly planet hunt in about 20 minutes:
 
 ### 1. Set up your local environment
 ```bash
-git clone https://github.com/CemreMetin/gezegen-avcisi.git
-cd gezegen-avcisi
+git clone https://github.com/CemreMetin/tess-planet-hunter.git
+cd tess-planet-hunter
 
 python -m venv venv
 # Windows PowerShell:
