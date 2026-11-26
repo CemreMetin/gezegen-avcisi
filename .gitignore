@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.fits
+*.fit
+.DS_Store
+Thumbs.db
+data/tess_tce_training.npz
+data/tess_tce_splits.npz
+ai/weights/*.pt
+ai/reports/*.png
