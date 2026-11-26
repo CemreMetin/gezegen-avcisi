@@ -9,6 +9,11 @@ I built **TESS Planet Hunter** after reading [Pavel Rabtsevich's story](https://
 
 I didn't want a project that needed babysitting all week, so I decided to automate the search and only spend an hour or two on Sundays reviewing results. There was just one catch: I quickly realized that finding planets means reading hundreds of noisy star-brightness graphs — and I had no idea how to read a light curve yet. Instead of giving up or eyeballing raw noise, I automated *that* part too: a nightly GitHub Actions pipeline cleans and pre-filters 300 NASA TESS stars a day, a lightweight PyTorch 1D CNN scores the most planet-like dips, and a keyboard-driven dark-mode UI lets me review the top candidates in 15 minutes every Sunday.
 
+### My Twist on the Idea
+- **Zero-cost cloud autopilot:** Rather than running manual scans on my laptop, a stateless GitHub Actions job runs every night at 03:00 UTC and saves tiny compressed `.npz` vectors back to the repo.
+- **Flare-first cleaning & bonus datasets:** Stellar flares are detected and masked *before* the transit search so they don't drown out planet signals — and both flares (`flares.csv`) and eclipsing binaries (`eclipsing_binaries.csv`) are saved as byproducts instead of discarded.
+- **My own 1D CNN + keyboard triage:** Instead of manually inspecting raw plots, I trained a compact PyTorch 1D CNN on 500 labeled NASA TOI stars so my Sunday review only shows the cleanest, highest-scoring candidates.
+
 ---
 
 ## What It Looks For
@@ -136,3 +141,4 @@ python triage.py
 ## Credits
 - Satellite data from the **NASA TESS Mission** via **MAST** and the **NASA Exoplanet Archive**.
 - 1D CNN architecture inspired by **AstroNet** (Shallue & Vanderburg, 2018).
+- Built and iterated with AI pair-programming via **Google Antigravity**.
